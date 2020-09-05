@@ -11,14 +11,15 @@ console.log('yes');
 async function getIPDetails() {
     console.log('button clicked');
     var query = inputTextData.innerText;
-    let result = await fetch(`http://ip-api.com/json/${query}`)
+    //let result = await fetch(`http://ip-api.com/json/${query}`)
+    let result = await fetch(`https://geo.ipify.org/api/v1?apiKey=at_UpWVnc4ARBBLxh3GidyeOgVNHwwqa&ipAddress=${query}`);
     const data = await result.json();
     console.log(data);
-    ipAddData.innerText = data.query;
-    locationData.innerText = data.city + ', ' + data.country;
-    timeZoneData.innerText = data.timezone;
-    ispData.innerText = data.isp;
-    myData(data.lat, data.lon);
+    ipAddData.innerText = data.ip;
+    locationData.innerText = data.location.city + ', ' + data.location.region;
+    timeZoneData.innerText = data.location.timezone;
+    ispData.innerText = data.as.name;
+    myData(data.location.lat, data.location.lng);
 }
 
 
